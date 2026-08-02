@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Happy Birthday Nanna - A premium interactive celebration website for Vadla Venkata Chary, made with love by Suma.">
+    <title>Happy Birthday Nanna ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. Loading Screen -->
+    <div id="loader" class="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-heart">
+                <svg viewBox="0 0 32 29.6" class="heart-svg">
+                    <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                    c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                </svg>
+            </div>
+            <h2 class="loader-title">Preparing Something Special...</h2>
+            <div class="loader-progress-bar">
+                <div class="loader-progress-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mouse Glow Follower -->
+    <div class="mouse-glow"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Audio System Floating Controls (Appears after loader/cake) -->
+    <div class="music-controls" id="music-widget">
+        <button id="music-toggle" class="music-btn" aria-label="Mute/Unmute Music">
+            <span class="music-icon-wrap">
+                <i class="fas fa-music"></i>
+            </span>
+            <span class="music-wave">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="main-content" class="hidden">
+
+        <!-- 2. Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-background-particles" id="particles-canvas-wrap">
+                <canvas id="particles-canvas"></canvas>
+            </div>
+            <div class="hero-container">
+                <div class="hero-image-wrapper">
+                    <!-- Standard placeholder pointing to local asset with Unsplash fallback -->
+                    <img src="Screenshot 2026-08-02 222159.png" alt="Vadla Venkata Chary Family Photo" class="hero-img" id="hero-image">
+                    <div class="hero-img-overlay"></div>
+                </div>
+                <div class="hero-text-content">
+                    <h1 class="hero-title animate-title">Happy Birthday Nanna <span class="heart-pulse">❤️</span></h1>
+                    <p class="hero-subtitle animate-subtitle">"The first hero of my life."</p>
+                    <div class="hero-actions animate-buttons">
+                        <button class="btn btn-primary magnetic" onclick="scrollToSection('#cake-section')">
+                            <span>Open Surprise</span>
+                        </button>
+                        <button class="btn btn-secondary magnetic" onclick="scrollToSection('#gallery')">
+                            <span>View Memories</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator" onclick="scrollToSection('#story')">
+                <span class="scroll-mouse">
+                    <span class="scroll-wheel"></span>
+                </span>
+                <span class="scroll-text">Scroll to Begin</span>
+            </div>
+        </section>
+
+        <!-- 3. Story Introduction -->
+        <section id="story" class="story-section section-padding">
+            <div class="container">
+                <div class="story-grid">
+                    <div class="story-text-wrap">
+                        <span class="story-overline">Our Guiding Light</span>
+                        <h2 class="story-title reveal-text">To the man who gave us the world</h2>
+                        <div class="story-body">
+                            <p class="reveal-text">Every step of our lives has been guided by your wisdom, supported by your strength, and warmed by your endless love. You are more than a father; you are our pillar of hope, our mentor, and our absolute hero.</p>
+                            <p class="reveal-text">Today, on your special day, we look back at the beautiful path you have paved for us, celebrating the gentle spirit, the sacrifices, and the smiles you share with us every single day.</p>
+                        </div>
+                    </div>
+                    <div class="story-image-wrap">
+                        <div class="parallax-img-container">
+                            <img src="Screenshot 2026-08-02 221333.png" alt="Vadla Venkata Chary Portrait" class="parallax-img">
+                            <div class="gold-border-decor"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Memory Gallery -->
+        <section id="gallery" class="gallery-section section-padding">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-overline">A Life in Pictures</span>
+                    <h2 class="section-title">Memory Gallery</h2>
+                    <p class="section-subtitle">A collection of moments captured in time. (Click to zoom & read captions)</p>
+                </div>
+                
+                <!-- Masonry Gallery Grid -->
+                <div class="gallery-masonry" id="gallery-grid">
+                    <!-- Photo 1 -->
+                    <div class="gallery-item" data-index="0" data-src="Screenshot 2026-08-02 184122.png" data-caption="Where it all began—a timeless portrait of Nanna and Amma starting their beautiful journey.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184122.png" alt="Vintage Portrait" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Vintage Portrait</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 2 -->
+                    <div class="gallery-item" data-index="1" data-src="Screenshot 2026-08-02 190014.png" data-caption="A wedding day filled with promises of a lifetime, standing together in love and devotion.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 190014.png" alt="The Sacred Vows" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">The Sacred Vows</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 3 -->
+                    <div class="gallery-item" data-index="2" data-src="Screenshot 2026-08-02 184353.png" data-caption="Lifting us high above the world, shielding us with your strength and warmth from day one.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184353.png" alt="The Joy of Fatherhood" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Joy of Fatherhood</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 4 -->
+                    <div class="gallery-item" data-index="3" data-src="Screenshot 2026-08-02 185943.png" data-caption="Holding the future in your hands with the gentlest care and purest love.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 185943.png" alt="Endless Affection" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Endless Affection</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 5 -->
+                    <div class="gallery-item" data-index="4" data-src="Screenshot 2026-08-02 184337.png" data-caption="Guiding our first steps and celebrating the little milestones that shaped our lives.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184337.png" alt="Early Toddler Days" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Early Toddler Days</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 6 -->
+                    <div class="gallery-item" data-index="5" data-src="Screenshot 2026-08-02 184150.png" data-caption="Candid moments of pure joy, laughter, and family warmth that we hold close to our hearts.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184150.png" alt="Family First" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Family First</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 7 -->
+                    <div class="gallery-item" data-index="6" data-src="Screenshot 2026-08-02 184105.png" data-caption="Proudly standing beside you during our traditional milestones, wrapped in your love and grace.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184105.png" alt="Traditional Blessings" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Traditional Blessings</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 8 -->
+                    <div class="gallery-item" data-index="7" data-src="Screenshot 2026-08-02 184327.png" data-caption="A complete family portrait—our pillars of strength, love, and unwavering support.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184327.png" alt="Our Whole World" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Our Whole World</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 9 -->
+                    <div class="gallery-item" data-index="8" data-src="Screenshot 2026-08-02 184255.png" data-caption="A classic portrait of Nanna, whose calm eyes and warm heart guide us through every storm.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184255.png" alt="Pillars of Wisdom" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Pillars of Wisdom</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 10 -->
+                    <div class="gallery-item" data-index="9" data-src="Screenshot 2026-08-02 183915.png" data-caption="Nanna and Amma sharing a peaceful moment amidst nature, walking hand-in-hand.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 183915.png" alt="Strolling Together" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Strolling Together</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 11 -->
+                    <div class="gallery-item" data-index="10" data-src="Screenshot 2026-08-02 184209.png" data-caption="Sharing bright smiles during family functions, celebrating the beauty of togetherness.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184209.png" alt="Celebrations & Joy" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Celebrations & Joy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 12 -->
+                    <div class="gallery-item" data-index="11" data-src="Screenshot 2026-08-02 183935.png" data-caption="A happy selfie with Nanna, whose smile always brings sunshine to our days.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 183935.png" alt="Warm Selfies" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Warm Selfies</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 13 -->
+                    <div class="gallery-item" data-index="12" data-src="Screenshot 2026-08-02 183946.png" data-caption="Capturing the simple, everyday moments that make life with you so special.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 183946.png" alt="Candid Moments" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Candid Moments</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 14 -->
+                    <div class="gallery-item" data-index="13" data-src="Screenshot 2026-08-02 184023.png" data-caption="No matter how old we grow, we will always be your little children seeking your guidance.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184023.png" alt="In Safe Hands" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">In Safe Hands</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 15 -->
+                    <div class="gallery-item" data-index="14" data-src="Screenshot 2026-08-02 184047.png" data-caption="Brightening up the frame with shared laughter and heartwarming father-daughter moments.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184047.png" alt="Playful Smiles" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Playful Smiles</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 16 -->
+                    <div class="gallery-item" data-index="15" data-src="Screenshot 2026-08-02 183957.png" data-caption="A serene moment with Nanna, reflecting peace, devotion, and family bonds.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 183957.png" alt="Sacred Tilak" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Sacred Tilak</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 17 -->
+                    <div class="gallery-item" data-index="16" data-src="Screenshot 2026-08-02 184138.png" data-caption="A comforting selfie, a reminder of the quiet strength that Nanna brings to our lives.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184138.png" alt="Quiet Comfort" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Quiet Comfort</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 18 -->
+                    <div class="gallery-item" data-index="17" data-src="Screenshot 2026-08-02 184307.png" data-caption="Nanna and Amma standing strong together, a testament to true love and companionship.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184307.png" alt="Partners for Life" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Partners for Life</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 19 -->
+                    <div class="gallery-item" data-index="18" data-src="Screenshot 2026-08-02 185915.png" data-caption="Visiting historic temples together, seeking blessings for health, prosperity, and peace.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 185915.png" alt="Sacred Temples" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Sacred Temples</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 20 -->
+                    <div class="gallery-item" data-index="19" data-src="Screenshot 2026-08-02 185908.png" data-caption="Sharing wisdom and a warm smile outside the temple, passing down legacy and values.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 185908.png" alt="Father & Son Bond" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Father & Son Bond</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 21 -->
+                    <div class="gallery-item" data-index="20" data-src="Screenshot 2026-08-02 185957.png" data-caption="Standing in peaceful reflection at the temple, embodying grace and humility.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 185957.png" alt="Devotion & Peace" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Devotion & Peace</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 22 -->
+                    <div class="gallery-item" data-index="21" data-src="Screenshot 2026-08-02 190034.png" data-caption="Another beautiful memory captured during our spiritual journeys together.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 190034.png" alt="Sacred Journey" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Sacred Journey</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 23 -->
+                    <div class="gallery-item" data-index="22" data-src="Screenshot 2026-08-02 185932.png" data-caption="A lovely selfie with a backdrop of tranquil waters and mountains, finding peace in nature.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 185932.png" alt="Scenic Escapes" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Scenic Escapes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 24 -->
+                    <div class="gallery-item" data-index="23" data-src="Screenshot 2026-08-02 184227.png" data-caption="A radiant portrait of Nanna in a bright yellow shirt, spreading positive energy and warmth.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 184227.png" alt="Golden Years" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Golden Years</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photo 25 -->
+                    <div class="gallery-item" data-index="24" data-src="Screenshot 2026-08-02 190100.png" data-caption="A serene, recent portrait of Vadla Venkata Chary, the heart and soul of our family.">
+                        <div class="gallery-item-inner">
+                            <img src="Screenshot 2026-08-02 190100.png" alt="Our Guiding Light" loading="lazy">
+                            <div class="gallery-item-hover">
+                                <span class="zoom-icon"><i class="fas fa-expand"></i></span>
+                                <span class="gallery-item-caption">Our Guiding Light</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Lightbox Modal -->
+        <div id="lightbox-modal" class="lightbox">
+            <span class="lightbox-close" id="lightbox-close-btn">&times;</span>
+            <div class="lightbox-content-wrapper">
+                <button class="lightbox-prev" id="lightbox-prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <div class="lightbox-media-container">
+                    <img id="lightbox-img" src="" alt="Zoomed view">
+                    <p id="lightbox-caption" class="lightbox-caption-text"></p>
+                </div>
+                <button class="lightbox-next" id="lightbox-next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- 5. Animated Timeline -->
+        <section id="timeline" class="timeline-section section-padding">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-overline">A Legacy of Love</span>
+                    <h2 class="section-title">The Journey of Nanna</h2>
+                    <p class="section-subtitle">A timeline celebrating the major milestones of a wonderful life.</p>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-badge"><i class="fas fa-baby"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <span class="timeline-year">06 Aug 1977</span>
+                                <h3 class="timeline-item-title">Childhood Days 👶</h3>
+                            </div>
+                            <div class="timeline-card-body">
+                                <p>Born in a world filled with dreams. A playful, curious boy who brought laughter and endless warmth to the family.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-badge"><i class="fas fa-user-graduate"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <span class="timeline-year">Academic Years</span>
+                                <h3 class="timeline-item-title">Education & Learning 🎓</h3>
+                            </div>
+                            <div class="timeline-card-body">
+                                <p>Pursuing wisdom with high ambitions. Instilling value in hard work and focus, preparing for a strong future ahead.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-badge"><i class="fas fa-briefcase"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <span class="timeline-year">Professional Rise</span>
+                                <h3 class="timeline-item-title">Career & Growth 💼</h3>
+                            </div>
+                            <div class="timeline-card-body">
+                                <p>Taking on responsibilities with integrity. Known for dedication, honesty, and setting a standard of excellence for everyone around.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-badge"><i class="fas fa-heart"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <span class="timeline-year">The Holy Union</span>
+                                <h3 class="timeline-item-title">Marriage & Partnership 💍</h3>
+                            </div>
+                            <div class="timeline-card-body">
+                                <p>Beginning a beautiful lifelong partnership. Two lives coming together to paint a future filled with happiness, trust, and shared values.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-badge"><i class="fas fa-users"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <span class="timeline-year">Our Home</span>
+                                <h3 class="timeline-item-title">Family & Kids 👨‍👩‍👧</h3>
+                            </div>
+                            <div class="timeline-card-body">
+                                <p>Becoming a father - our greatest gift. Giving us the best of values, teaching us selflessness, and shielding us from every storm.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 6 -->
+                    <div class="timeline-item">
+                        <div class="timeline-badge"><i class="fas fa-smile"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <span class="timeline-year">Life's Treasures</span>
+                                <h3 class="timeline-item-title">Beautiful Memories ❤️</h3>
+                            </div>
+                            <div class="timeline-card-body">
+                                <p>Countless holidays, simple Sunday afternoon conversations, laughter around the dining table, and quiet support in times of struggle.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 7 -->
+                    <div class="timeline-item">
+                        <div class="timeline-badge"><i class="fas fa-cake-candles"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <span class="timeline-year">06 Aug 2026</span>
+                                <h3 class="timeline-item-title">Happy Birthday Nanna! 🎂</h3>
+                            </div>
+                            <div class="timeline-card-body">
+                                <p>Wishing you the best health, joy, and peace in your life. The world is a better place because of you.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Video Section -->
+        <section id="video-section" class="video-section section-padding">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-overline">Cinematic Wishes</span>
+                    <h2 class="section-title">A Special Video Message</h2>
+                    <p class="section-subtitle">A message of love, compiled with memories and warm wishes.</p>
+                </div>
+
+                <!-- Glassmorphic Video Box -->
+                <div class="video-container-box">
+                    <div class="video-ratio-keeper">
+                        <!-- User-replaceable video placeholder -->
+                        <div class="video-placeholder-wrapper" id="video-wrapper">
+                            <img src="Screenshot 2026-08-02 184209.png" alt="Video cover" class="video-cover-img">
+                            <div class="video-overlay-tint"></div>
+                            <div class="video-play-btn" id="play-video-trigger">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span class="video-instruction-text">Tap to Play Birthday Video</span>
+                        </div>
+                        
+                        <!-- Actual Video element (Hidden by default, ready for local replacement) -->
+                        <video id="birthday-video" class="hidden-video" controls>
+                            <source src="assets/birthday_wishes.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Family Wishes Carousel -->
+                <div class="wishes-carousel-wrapper">
+                    <h3 class="carousel-title text-center">Heartfelt Wishes from the Family</h3>
+                    <div class="wishes-carousel" id="wishes-track">
+                        <!-- Card 1 -->
+                        <div class="wish-card glass-card">
+                            <div class="wish-quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p class="wish-text">"You are my guide, my inspiration, and the strongest person I know. Happy Birthday to the best Nanna in the universe!"</p>
+                            <div class="wish-author">
+                                <span class="author-name">Suma</span>
+                                <span class="author-relation">Daughter</span>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="wish-card glass-card">
+                            <div class="wish-quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p class="wish-text">"To my lifetime companion, who made every dream possible and stood beside me like a rock. Happy Birthday, dearest!"</p>
+                            <div class="wish-author">
+                                <span class="author-name">Amma</span>
+                                <span class="author-relation">Wife</span>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="wish-card glass-card">
+                            <div class="wish-quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p class="wish-text">"Thank you for showing me what integrity, kindness, and selflessness look like. Have a marvelous birthday, Nanna!"</p>
+                            <div class="wish-author">
+                                <span class="author-name">Family Members</span>
+                                <span class="author-relation">Loved Ones</span>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="wish-card glass-card">
+                            <div class="wish-quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p class="wish-text">"Your legacy of love and compassion is what we strive to carry forward. May you have the happiest day of your life!"</p>
+                            <div class="wish-author">
+                                <span class="author-name">Relative</span>
+                                <span class="author-relation">Well Wisher</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators" id="carousel-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Thank You Section (Handwritten Paper Note) -->
+        <section id="thank-you-note" class="thank-you-note-section section-padding">
+            <div class="container">
+                <div class="note-outer">
+                    <div class="paper-note">
+                        <div class="note-header">
+                            <h2 class="note-title">Thank You, Nanna ❤️</h2>
+                        </div>
+                        <div class="note-content">
+                            <p class="note-line">Thank you for the infinite sacrifices you made to give us a brighter tomorrow.</p>
+                            <p class="note-line">Thank you for always believing in my dreams, even when I had doubts of my own.</p>
+                            <p class="note-line">Thank you for your gentle guidance, showing me the path of honesty and kindness.</p>
+                            <p class="note-line">Thank you for being our safe haven, shielding us from life's storms with a smile.</p>
+                            <p class="note-line">Thank you for loving us unconditionally, each and every single day.</p>
+                        </div>
+                        <div class="note-footer">
+                            <span class="note-signature">With all my love,</span>
+                            <span class="signature-name">Suma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Interactive Photo Album (Page Turner) -->
+        <section id="photo-album" class="album-section section-padding">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-overline">Interactive Keepsake</span>
+                    <h2 class="section-title">The Golden Album</h2>
+                    <p class="section-subtitle">Click the pages to flip through the beautiful chapters of our life.</p>
+                </div>
+
+                <div class="album-wrapper">
+                    <div class="book" id="book-container">
+                        <!-- Page 1 (Cover) -->
+                        <div class="page cover-page active" id="p1">
+                            <div class="page-front" onclick="flipPage(1, true)">
+                                <div class="cover-design">
+                                    <div class="cover-gold-decor"></div>
+                                    <h3 class="album-title">Nanna's Scrapbook</h3>
+                                    <span class="album-subtitle">Vadla Venkata Chary</span>
+                                    <span class="click-instruction"><i class="fas fa-hand-pointer"></i> Tap to Open</span>
+                                </div>
+                            </div>
+                            <div class="page-back" onclick="flipPage(1, false)">
+                                <div class="page-inner-content">
+                                    <img src="Screenshot 2026-08-02 184122.png" alt="Album Image 1" class="album-photo">
+                                    <p class="album-caption">Chapter 1: The Foundation of Family</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Page 2 -->
+                        <div class="page" id="p2">
+                            <div class="page-front" onclick="flipPage(2, true)">
+                                <div class="page-inner-content">
+                                    <img src="Screenshot 2026-08-02 184353.png" alt="Album Image 2" class="album-photo">
+                                    <p class="album-caption">Chapter 2: Guided by Your Light</p>
+                                </div>
+                            </div>
+                            <div class="page-back" onclick="flipPage(2, false)">
+                                <div class="page-inner-content">
+                                    <img src="Screenshot 2026-08-02 184150.png" alt="Album Image 3" class="album-photo">
+                                    <p class="album-caption">Chapter 3: Countless Moments of Laughter</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Page 3 -->
+                        <div class="page" id="p3">
+                            <div class="page-front" onclick="flipPage(3, true)">
+                                <div class="page-inner-content">
+                                    <img src="Screenshot 2026-08-02 190034.png" alt="Album Image 4" class="album-photo">
+                                    <p class="album-caption">Chapter 4: Strength in Every Step</p>
+                                </div>
+                            </div>
+                            <div class="page-back" onclick="flipPage(3, false)">
+                                <div class="page-inner-content">
+                                    <div class="end-cover-design">
+                                        <div class="cover-gold-decor"></div>
+                                        <h3 class="album-title">To Be Continued...</h3>
+                                        <p class="album-end-text">Every day with you is a beautiful page added to our story.</p>
+                                        <span class="click-instruction"><i class="fas fa-arrow-left"></i> Flip back</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Reasons We Love You Cards -->
+        <section id="reasons-section" class="reasons-section section-padding">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-overline">Why You Are Special</span>
+                    <h2 class="section-title">Reasons We Love You</h2>
+                    <p class="section-subtitle">A simple list of attributes that define the marvelous human you are.</p>
+                </div>
+
+                <div class="reasons-grid">
+                    <!-- Card 1 -->
+                    <div class="reason-card glass-card">
+                        <div class="reason-icon"><i class="fas fa-heart"></i></div>
+                        <h3 class="reason-title">❤️ Caring</h3>
+                        <p class="reason-desc">Your kindness knows no bounds. You notice the smallest worries and silently make everything better.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="reason-card glass-card">
+                        <div class="reason-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h3 class="reason-title">❤️ Strong</h3>
+                        <p class="reason-desc">You are our shield. Through life's tests, your silent strength has kept our family unbreakable.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="reason-card glass-card">
+                        <div class="reason-icon"><i class="fas fa-scale-balanced"></i></div>
+                        <h3 class="reason-title">❤️ Honest</h3>
+                        <p class="reason-desc">You taught us values. By living a life of absolute integrity, you showed us what it means to be good.</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="reason-card glass-card">
+                        <div class="reason-icon"><i class="fas fa-face-smile-beam"></i></div>
+                        <h3 class="reason-title">❤️ Loving</h3>
+                        <p class="reason-desc">Your love is unconditional. It's the silent anchor that keeps our souls grounded in happiness.</p>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="reason-card glass-card">
+                        <div class="reason-icon"><i class="fas fa-hands-holding"></i></div>
+                        <h3 class="reason-title">❤️ Supportive</h3>
+                        <p class="reason-desc">No dream is ever too big or silly for you. You stand behind our choices with unwavering trust.</p>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="reason-card glass-card">
+                        <div class="reason-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3 class="reason-title">❤️ Inspiring</h3>
+                        <p class="reason-desc">You live by example. Your resilience, hard work, and kindness inspire us to be better versions of ourselves.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Interactive Birthday Cake -->
+        <section id="cake-section" class="cake-section section-padding">
+            <div class="container text-center">
+                <div class="section-header text-center">
+                    <span class="section-overline">A Magical Moment</span>
+                    <h2 class="section-title">Blow Out the Candles!</h2>
+                    <p class="section-subtitle">Make a wish, click the candles to blow them out, and start the celebration!</p>
+                </div>
+
+                <!-- 3D/2.5D Interactive Cake Wrapper -->
+                <div class="cake-wrapper">
+                    <div class="cake-glow-effect"></div>
+                    <div class="cake-container" id="birthday-cake">
+                        <!-- Plate -->
+                        <div class="cake-plate"></div>
+                        <!-- Cake Bottom Layer -->
+                        <div class="cake-layer layer-bottom"></div>
+                        <!-- Cake Top Layer -->
+                        <div class="cake-layer layer-top"></div>
+                        <!-- Frosting & Drips -->
+                        <div class="cake-drips">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <!-- Candles Container -->
+                        <div class="candles-wrapper">
+                            <!-- Candle 1 -->
+                            <div class="candle candle-1 active-candle" id="candle-1">
+                                <div class="candle-wick"></div>
+                                <div class="candle-flame"></div>
+                            </div>
+                            <!-- Candle 2 -->
+                            <div class="candle candle-2 active-candle" id="candle-2">
+                                <div class="candle-wick"></div>
+                                <div class="candle-flame"></div>
+                            </div>
+                            <!-- Candle 3 -->
+                            <div class="candle candle-3 active-candle" id="candle-3">
+                                <div class="candle-wick"></div>
+                                <div class="candle-flame"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Banner after candles blown out -->
+                <div class="celebration-banner-wrapper hidden" id="celebration-banner">
+                    <h2 class="banner-title">Happy Birthday Nanna ❤️</h2>
+                    <p class="banner-subtitle">May this year bring you endless happiness, good health, and peace!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Floating Balloons (Interactive) -->
+        <div id="balloons-container" class="balloons-overlay">
+            <!-- Balloons will be dynamically generated by JS -->
+        </div>
+        
+        <!-- Balloons Info Toast -->
+        <div id="balloon-toast" class="balloon-message-toast hidden">
+            <span class="toast-heart">❤️</span>
+            <span class="toast-text" id="balloon-toast-text">Message</span>
+        </div>
+
+        <!-- 12. Quote Section -->
+        <section id="quote-section" class="quote-section">
+            <div class="quote-parallax-bg"></div>
+            <div class="quote-tint"></div>
+            <div class="container relative-content text-center">
+                <div class="quote-box">
+                    <span class="quote-symbol"><i class="fas fa-quote-left"></i></span>
+                    <blockquote class="quote-text">
+                        "A father is neither an anchor to hold us back, nor a sail to take us there, but a guiding light whose love shows us the way."
+                    </blockquote>
+                    <cite class="quote-author">— With Love, Suma</cite>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Celebration Section & 14. Final Thank You -->
+        <section id="celebration-section" class="celebration-section section-padding">
+            <div class="celebration-canvas-container">
+                <canvas id="fireworks-canvas"></canvas>
+            </div>
+            
+            <div class="container text-center relative-content">
+                <!-- Staggered final message credits-style -->
+                <div class="final-credits" id="credits-container">
+                    <span class="credit-gold font-great-vibes text-4xl">Thank You</span>
+                    <h2 class="credit-huge mt-4">For Every Smile</h2>
+                    <h2 class="credit-huge">Every Sacrifice</h2>
+                    <h2 class="credit-huge">Every Lesson</h2>
+                    <h2 class="credit-huge">Every Hug</h2>
+                    
+                    <div class="credit-divider"></div>
+                    
+                    <h3 class="credit-final-title font-playfair">Happy Birthday Nanna ❤️</h3>
+                    <p class="credit-final-sub font-poppins">Today and every day, we celebrate you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 15. Footer -->
+        <footer id="footer" class="footer-wrapper">
+            <div class="container text-center">
+                <p class="footer-text">Made with <span class="footer-heart-pulse">❤️</span> by <strong>Suma</strong></p>
+                <p class="footer-copyright">&copy; 2026 Vadla Venkata Chary Celebration. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JS Libraries (GSAP, ScrollTrigger, Confetti) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Main JavaScript Logic -->
+    <script src="js/main.js"></script>
+</body>
+</html>
