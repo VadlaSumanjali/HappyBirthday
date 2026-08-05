@@ -1202,6 +1202,7 @@ body:hover .mouse-glow {
     width: var(--book-width);
     height: var(--book-height);
     transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
     transform: scale(var(--book-scale-closed, 1));
@@ -1218,6 +1219,7 @@ body:hover .mouse-glow {
     top: 0;
     left: 0;
     transform-origin: left center;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 5;

@@ -7,9 +7,14 @@
    ==========================================================================
 */
 
-// Wait for DOM and assets to load
+// Start the loader progress bar simulation immediately so the user isn't stuck on 0%
+initLoader();
+
+// Refresh ScrollTrigger once all images and assets are fully loaded (prevents layout shift issues)
 window.addEventListener('load', () => {
-    initLoader();
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+    }
 });
 
 /* 1. INITIALIZATION & LOADER */
@@ -34,8 +39,13 @@ function initLoader() {
                     loader.style.display = 'none';
                     mainContent.classList.remove('hidden');
                     
-                    // Trigger animations
-                    initAllSystems();
+                    // Delay slightly to allow the browser to perform layout pass before calculating ScrollTrigger coordinates
+                    setTimeout(() => {
+                        initAllSystems();
+                        if (typeof ScrollTrigger !== 'undefined') {
+                            ScrollTrigger.refresh();
+                        }
+                    }, 100);
                 }
             });
         }
@@ -50,6 +60,11 @@ function initAllSystems() {
 
     // Register GSAP ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
+    
+    // Ignore mobile address bar resize events to prevent jumps/flickers
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.config({ ignoreMobileResize: true });
+    }
 
     // Initialize individual components
     initScrollProgress();
@@ -529,13 +544,38 @@ function initWishesCarousel() {
         updateCarousel();
     }, 6000);
 
-    // Pause autoplay on mouse hover
+    // Pause autoplay on mouse hover/touch interaction
     track.addEventListener('mouseenter', () => clearInterval(autoPlay));
     track.addEventListener('mouseleave', () => {
+        clearInterval(autoPlay);
         autoPlay = setInterval(() => {
             currentIndex = (currentIndex + 1) % cards.length;
             updateCarousel();
         }, 6000);
+    });
+
+    track.addEventListener('touchstart', () => clearInterval(autoPlay));
+    track.addEventListener('touchend', () => {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(() => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateCarousel();
+        }, 6000);
+    });
+
+    // Listen to scroll events to sync dot indicators during touch swiping
+    let isScrolling;
+    track.addEventListener('scroll', () => {
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => {
+            const index = Math.round(track.scrollLeft / track.offsetWidth);
+            if (index !== currentIndex && index >= 0 && index < cards.length) {
+                currentIndex = index;
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentIndex);
+                });
+            }
+        }, 100);
     });
 
     // Handle resize calculations
